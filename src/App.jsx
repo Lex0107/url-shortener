@@ -1,10 +1,42 @@
-import { Button } from "@/components/ui/button"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import AppLayout from "./layouts/app-lauout"
+import Landingpage from "./pages/landing"
+import Dashboard from "./pages/dashboard"
+import Auth from "./pages/auth"
+import Link from "./pages/link"
+import RedirectLink from "./pages/redirect-link"
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Landingpage />,
+      },
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
+      },
+      {
+        path: '/auth',
+        element: <Auth />,
+      },
+      {
+        path: '/link/:id',
+        element: <Link />,
+      },
+      {
+        path: '/:id',
+        element: <RedirectLink />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <RouterProvider router={router}/>
   )
 }
 
